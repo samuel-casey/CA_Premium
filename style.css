@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    background-color: hsla(55, 80%, 69%, 0.41);
+    opacity: .75;
+}
+
+.time-container, p{
+    display: flex;
+    font-family: 'Arial'; 
+    color: #10E0EE;
+    background-color: rgb(236, 236, 236));
+    opacity; .8;
+    font-weight: bold;
+    align-items: center;
+}:
+
+.next_high{
+    display: flex;
+    text-align: center;
+}
