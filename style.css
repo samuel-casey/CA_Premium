@@ -1,20 +1,139 @@
-body{
-    display: flex;
-    background-color: hsla(55, 80%, 69%, 0.41);
-    opacity: .75;
+* {
+    box-sizing: border-box;
 }
 
-.time-container, p{
+body {
     display: flex;
-    font-family: 'Arial'; 
-    color: #10E0EE;
-    background-color: rgb(236, 236, 236));
-    opacity; .8;
-    font-weight: bold;
-    align-items: center;
-}:
+    background-color: none;
+    opacity: 1;
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+}
 
-.next_high{
+footer {
     display: flex;
+    top: 1em;
+    justify-content: center;
+    background-color: white;
+    position: absolute;
+    top: 96.8vh;
+    left: 0;
+    width: 100vw;
+    height: fit-content;
+    align-items: center;
+    opacity: .2;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    position: relative;
+    left: 0;
+    margin: 0 auto;
+    height: inherit;
+}
+
+.time-container {
+    display: inherit;
+    width: 100vw;
+    height: 90vh;
+    margin: 0 auto;
+    position: absolute;
+    top: 2em;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: transparent;
+}
+
+#next_high {
+    display: flex;
+    align-self: center;
+}
+
+#next_low {
+    display: flex;
+    align-self: center;
+}
+
+#current_time {
+    display: flex;
+    align-self: flex-start;
+}
+
+#simulation {
+    display: flex;
+    height: 2em;
+    width: 2em;
+    align-items: center;
+    justify-content: stretch;
+}
+
+#current_time,
+#next_low,
+#next_high {
+    display: flex;
+    font-family: 'Arial';
+    font-size: 2em;
+    color: rgba(214, 241, 243, 0.945);
+    font-weight: bold;
+    margin: 0 auto;
+    opacity: .86;
+    height: 1.2em;
+    width: 2.5em;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 1em;
+    z-index: 1;
+}
+
+#location {
+    color: navy;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    justify-content: center;
+    margin: 0 auto;
+    justify-items: center;
+    opacity: .8;
+}
+
+header {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2.2em;
+    width: 100vw;
+    background-color: white;
+    opacity: .2;
+    justify-content: center;
+    padding: 0;
+    float: right;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#beach {
+    position: relative;
+    margin: 0 auto;
+    width: 100vw;
+    height: inherit;
+    padding: 0;
+    z-index: -1;
+}
+
+#info {
+    display: flex;
+    position: relative;
+    justify-self: flex-end;
+    float: right;
+    opacity: 1;
+}
+
+h1 {
+    margin: 0 auto;
 }
