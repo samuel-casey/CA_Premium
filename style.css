@@ -4,72 +4,49 @@
 
 body {
     display: flex;
-    background-color: none;
     opacity: 1;
     height: 100vh;
     width: 100vw;
-    margin: 0 auto;
-}
-
-footer {
-    display: flex;
-    top: 1em;
-    justify-content: center;
-    background-color: white;
-    position: absolute;
-    top: 96.8vh;
-    left: 0;
-    width: 100vw;
-    height: fit-content;
-    align-items: center;
-    opacity: .2;
-}
-
-.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    left: 0;
-    margin: 0 auto;
-    height: inherit;
+    background-image: url('beach.jpg');
+    background-size: 100%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
 }
 
 .time-container {
-    display: inherit;
-    width: 100vw;
-    height: 90vh;
-    margin: 0 auto;
-    position: absolute;
-    top: 2em;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background-color: transparent;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    width: 95%;
+    height: 95%;
+    align-self: flex-start;
+    justify-self: center;
 }
 
 #next_high {
-    display: flex;
+    grid-column: 4;
+    grid-row: 3;
     align-self: center;
 }
 
 #next_low {
-    display: flex;
+    grid-column: 2;
+    grid-row: 3;
     align-self: center;
 }
 
 #current_time {
-    display: flex;
+    grid-column: 3;
+    grid-row: 2;
     align-self: flex-start;
+    opacity: 1;
 }
 
-#simulation {
-    display: flex;
-    height: 2em;
-    width: 2em;
-    align-items: center;
-    justify-content: stretch;
+#play_button {
+    grid-column: 3;
+    grid-row: 5;
+    justify-self: center;
+    align-self: flex-end;
 }
 
 #current_time,
@@ -94,46 +71,26 @@ footer {
 #location {
     color: navy;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 2em;
     position: relative;
-    justify-content: center;
     margin: 0 auto;
-    justify-items: center;
+    grid-column: 3;
+    grid-row: 1;
     opacity: .8;
-}
-
-header {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2.2em;
-    width: 100vw;
-    background-color: white;
-    opacity: .2;
-    justify-content: center;
-    padding: 0;
-    float: right;
-    text-align: center;
-    margin: 0 auto;
-}
-
-#beach {
-    position: relative;
-    margin: 0 auto;
-    width: 100vw;
-    height: inherit;
-    padding: 0;
-    z-index: -1;
+    align-self: center;
 }
 
 #info {
-    display: flex;
-    position: relative;
+    grid-column: 5;
+    grid-row: 1;
+    align-self: flex-start;
     justify-self: flex-end;
-    float: right;
-    opacity: 1;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-style: italic;
+    color: white;
 }
 
-h1 {
-    margin: 0 auto;
+a {
+    text-decoration: none;
 }
