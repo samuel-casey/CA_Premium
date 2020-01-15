@@ -1,10 +1,27 @@
-// THIS FILE CREATES AN HTTP SERVER USING NODE \\
+// this file creates a server using express and writes frontend code to that server using express methods
 
-const http = require('http'); // dependency to create an http server
-let { requestListener } = require('./nodeFileSystem.js'); // create a requestListener object that is imported from nodeFS.js
+const express = require('express')
+const app = express()
+app.use(express.static('C:/CA_Premium/tides_vis/public'))
 
-const PORT = process.env.PORT || 8000; // access the client's environment and set up a port to be used later
+app.get('/', (req, res, next) => {
+    res.sendFile('C:/CA_Premium/tides_vis/public/index.html')
+})
 
-const server = http.createServer(requestListener)
+// const html = require('./public/index.html')
+// console.log(html)
 
-setTimeout((handler) => { server.listen(PORT) }, 3000) // run the webserver and have it listen for a request from port 8000
+// create a router
+// const router = express.Router()
+// app.use('/', router);
+
+// create html variable to dynamically change index.html route for testing purposes
+
+// router.use(express.static('public'))
+
+// router.get('/', (req, res, next) => {
+//     res.send(html);
+//     console.log('sent html file');
+// });
+
+app.listen(8000, () => console.log('server running'))
