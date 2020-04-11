@@ -9,6 +9,29 @@ body {
     width: 100vw;
     background-color: rgb(39, 53, 100);
     background-size: 100%;
+    /* flex-direction: column; */
+}
+
+#sun {
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+    transform: translate(-40%, -30%)
+}
+
+.stillWater {
+    grid-row: 2;
+    grid-column: 3;
+}
+
+#stillWater {
+    grid-row: 2;
+    grid-column: 3;
+}
+
+.sun {
+    height: 170px;
+    width: 175px;
 }
 
 .time-container {

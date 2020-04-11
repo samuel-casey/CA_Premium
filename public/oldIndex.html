@@ -3,25 +3,52 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-US-Compatible" content="ie=edge">
     <title>
         Tides Visualizer
     </title>
-    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="oldStyle.css" />
 </head>
 
 <body>
 
+    
+    
     <div class="time-container">
+        <div>
+            <svg class="sun">
+                <g id="sun">
+                    <path id="Vector 1"
+                        d="M244 70.0645L205.774 89.6613V57L184.962 70.0645L176.892 57L153.108 70.0645L145.038 57L128.898 89.6613L108.086 70.0645L109.785 101.419L86 109.258L100.441 132.339L86 147.145L108.086 166.742L86 188.081H119.554V219L145.038 201.145L153.108 219L176.892 201.145L205.774 219V188.081H244L221.489 175.016L244 158.468L221.489 134.081L244 125.806L221.489 109.258L244 70.0645Z"
+                        fill="#FFF500" stroke="#F2EA1A" />
+                    <rect id="Rectangle 3" x="125" y="98" width="80" height="80" rx="40" fill="#EEE62B" />
+                 </g>
+            </svg>
+        </div>
+
         <p id="location">Location</p>
         <p id="next_low">00:00</p>
         <p id="current_time">12:00</p>
         <p id="next_high">18:00</p>
-        <a id="play_button"><img src="play.jpg" alt="Play" height="20px" width="20px"></a>
+        <a id="play_button"><img src="images/play.jpg" alt="Play" height="20px" width="20px"></a>
         <a id="info" href="info.html">i</a>
+        
+        <svg class="stillWater">
+            <g id="stillWater" filter="url(#filter1_d)">
+                <path
+                    d="M-5 541.612C-5 536.543 -1.20782 532.276 3.82572 531.681L517 471H1430C1435.52 471 1440 475.477 1440 481V609.663C1440 614.9 1435.96 619.25 1430.74 619.636L983.989 652.6L6.0498 755.834C0.144423 756.457 -5 751.827 -5 745.889V541.612Z"
+                    fill="#0B61B0" />
+                <path
+                    d="M-5 541.612C-5 536.543 -1.20782 532.276 3.82572 531.681L517 471H1430C1435.52 471 1440 475.477 1440 481V609.663C1440 614.9 1435.96 619.25 1430.74 619.636L983.989 652.6L6.0498 755.834C0.144423 756.457 -5 751.827 -5 745.889V541.612Z"
+                    fill="#0B61B0" />
+            </g>
+        </svg>
+
+
     </div>
 
 </body>
-
-<script href="script.js"></script>
 
 </html>
