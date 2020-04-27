@@ -48,28 +48,6 @@ def upload_station_csv(table_name, station):
 
 # upload_station_csv(test_table_name, test_station)
 
-def select_from_station(table_name):
-    try:
-
-        con = psycopg2.connect(database='testdb', user='postgres', password='dataBoi')
-
-        cur = con.cursor()
-        cur.execute(f"SELECT * FROM {table_name}")
-
-        table = cur.fetchall()
-        print(table[0:2])
-
-    except psycopg2.DatabaseError as e:
-
-        print(f'Error {e}')
-        sys.exit(1)
-
-    finally:
-
-        if con:
-            con.close()
-
-# select_from_station(test_table_name)
 
 #valid stations imported from valid_stations.py -- 
 stations_to_upload = valid_stations

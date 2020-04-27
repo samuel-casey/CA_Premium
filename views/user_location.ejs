@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>geolocate</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script defer src="user_location.js"></script>
+</head>
+
+<body>
+
+<form action="server.js" method="POST">
+
+<div>location</div>
+<input id="locationInput"></input><br><br>
+<button type="button" onclick="handleSubmit()" action="#">find lat and lon</button><br><br>
+
+<div>lat and lon:</div>
+<p id="geocode">(enter location)</p>
+
+<div>station:</div>
+
+</form>
+
+</body>
+</html>

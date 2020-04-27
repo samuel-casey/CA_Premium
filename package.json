@@ -2,10 +2,8 @@
     "name": "tides_vis",
     "version": "1.0.0",
     "description": "This repository will house a webapp that shows a real-time visualization of tides in various locations around the world",
-    "main": "nodeFileSystem.js",
+    "main": "server.js",
     "scripts": {
-        "test": "node debug asyncDat.js",
-        "start": "node asyncDat.js"
     },
     "repository": {
         "type": "git",
@@ -18,8 +16,10 @@
     },
     "homepage": "https://github.com/samuel-casey/CA_Premium#readme",
     "dependencies": {
+        "consolidate": "^0.15.1",
         "csv-parse": "^4.8.6",
         "csv-writer": "^1.6.0",
+        "ejs": "^3.1.2",
         "express": "^4.17.1",
         "pg": "^7.18.2",
         "postgres": "^1.0.2"
