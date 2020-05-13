@@ -23,7 +23,7 @@ invalid_stations = []
 
 for station in all_stations:
     idx = all_stations.index(station)
-    file_name = f"./csvs/tide_predictions/{station}_2020.csv"
+    file_name = f"../csvs/tide_predictions/{station}_2020.csv"
     with open (file_name, 'r') as f:
         reader = csv.reader(f)
         lines = len(list(reader))
@@ -31,3 +31,5 @@ for station in all_stations:
             valid_stations.append(station)
         else:
             invalid_stations.append(station)
+
+print(valid_stations)

@@ -49,3 +49,4 @@ for i in tide_station_ids:
             row = n.split(",")
             writer.writerow(row)
     counter += 1
+

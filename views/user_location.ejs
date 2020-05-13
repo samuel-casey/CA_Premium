@@ -9,16 +9,23 @@
 
 <body>
 
-<form action="server.js" method="POST">
-
+<form>
 <div>location</div>
 <input id="locationInput"></input><br><br>
 <button type="button" onclick="handleSubmit()" action="#">find lat and lon</button><br><br>
 
-<div>lat and lon:</div>
-<p id="geocode">(enter location)</p>
+<div>Your coordinates:</div>
+<p id="geocode"></p>
 
-<div>station:</div>
+<div id="stationOutput">Tidal station nearest you: <br><br></div><br><br>
+
+<div id="currentTime">Current time @ station: <br><br></div><br><br>
+
+<div id="stationData">Data for station: <br><br></div><br><br>
+
+<div id="nextTideTime">Next tide @ station: <br><br></div><br><br>
+
+<div id="previousTideTime">Last tide @ station: <br><br></div><br><br>
 
 </form>
 
