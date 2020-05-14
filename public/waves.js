@@ -29,5 +29,6 @@ function simulate() {
     for (var i = 0; i <= mWVarList.length; i++) {
     water.style.setProperty(`--mW${i}`, mWVarList[i])
     }
+
 }
 

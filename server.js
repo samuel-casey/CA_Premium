@@ -42,10 +42,18 @@ app.post('/times', async (req, res, next) => {
   res.status(200).send(timeAtStation);
 })
 
-app.post('/stationData', async (req, res, next) => {
-  const stationId = await db.getStationByGeocode(req.body);
+app.post('/lastTide', async (req, res, next) => {
+  const stationObj = await db.getStationByGeocode(req.body);
   const timeAtStation = await timeCalc.calcTimeAtStation(req.body);
-  const stationLookup = await db.getStationData(stationId, timeAtStation);
+  const stationLookup = await db.getStationLastData(stationObj['station_id'], timeAtStation);
+  const stationData = stationLookup
+  res.status(200).send(stationData);
+})
+
+app.post('/nextTide', async (req, res, next) => {
+  const stationObj = await db.getStationByGeocode(req.body);
+  const timeAtStation = await timeCalc.calcTimeAtStation(req.body);
+  const stationLookup = await db.getStationNextData(stationObj['station_id'], timeAtStation);
   const stationData = stationLookup
   res.status(200).send(stationData);
 })

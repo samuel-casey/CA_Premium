@@ -17,7 +17,6 @@ function timeToNumber(timeString) {
 }
 
 const stations_table = "station_metadata"
-let station_data = 8443970; // boston as test value
 
 async function getStationByGeocode(coordinates) {
     let {lat, lon} = await coordinates;
@@ -101,71 +100,34 @@ async function getStationByGeocode(coordinates) {
     }
 
     return pool.query(`SELECT * FROM ${stations_table} WHERE lat = $1 AND lon = $2`, [lat, lon])
-    .then(results => results.rows[0]['station_id'].trim())
+    .then( (results) => 
+    {
+      
+      stationData = {
+        'station_id': results.rows[0]['station_id'].trim(),
+        'station_name': results.rows[0]['station_name'].trim()
+      }
+      
+      return stationData
+    }
+    )
     .catch(error => console.log(error));
 };
 
-function getStationData(stationId, timeAtStation) {
-  const dt = timeAtStation.toString()
-  const today = dt.slice(0,11)
-  const timeNow = dt.slice(today.length - 1).trim()
-  const timeNowNum = timeToNumber(timeNow)
-
-  let daysTides = []
-  return pool.query(`SELECT * FROM _${stationId}_2020 WHERE date_time LIKE '${today}%'`)
-  .then( (results) => {
-
-    console.log(`results length: ${results.rows.length}`)
-
-    let firstTide = results.rows[0]['date_time'].trim()
-    let firstTideTime = firstTide.slice(firstTide.length - 5)
-    let firstTideTimeNum = timeToNumber(firstTideTime);
-    console.log(`first tide: ${firstTideTime}`)
-
-    let secondTide = results.rows[1]['date_time'].trim()
-    let secondTideTime = secondTide.slice(secondTide.length - 5)
-    let secondTideTimeNum = timeToNumber(secondTideTime);
-    console.log(`second tide: ${secondTideTime}`)
-
-    let thirdTide = results.rows[2]['date_time'].trim()
-    let thirdTideTime = thirdTide.slice(thirdTide.length - 5)
-    let thirdTideTimeNum = timeToNumber(thirdTideTime);
-    console.log(`third tide: ${thirdTideTime}`)
-
-    let fourthTide = results.rows[3]['date_time'].trim()
-    let fourthTideTime = fourthTide.slice(fourthTide.length - 5)
-    let fourthTideTimeNum = timeToNumber(fourthTideTime);
-    console.log(`fourth tide: ${fourthTideTime}`)
-
-    let tideTimeNums = [firstTideTimeNum, secondTideTimeNum, thirdTideTimeNum, fourthTideTimeNum]
-    let closestPrevious = 0 
-    let closestNext = 0
-
-    for (let n = 0; n < tideTimeNums.length; n++) {
-      let difference = timeNowNum - tideTimeNums[n]
-      if (difference <= 0 && difference > -601) {
-        closestNext = tideTimeNums[n]
-      }
-
-      if (difference >= 0 && difference < 600) {
-        closestPrevious = tideTimeNums[n]
-      }
-    }
-    
-    console.log(closestNext)
-    console.log(closestPrevious)
-
-    let lastNext = {
-      'last': closestPrevious,
-      'next': closestNext
-    }
-
-    return lastNext
-  }
-  )
+function getStationNextData(stationId, timeAtStation) {
+  const today = timeAtStation.toString()
+  return pool.query(`SELECT * FROM _${stationId}_2020 WHERE date_time > '${today}' LIMIT 1`)
+  .then( (results) => results.rows[0]['date_time'].trim())
   .catch(error => console.log(error))
   
 };
 
+function getStationLastData(stationId, timeAtStation) {
+  const today = timeAtStation.toString()
+  return pool.query(`SELECT * FROM _${stationId}_2020 WHERE date_time < '${today}' ORDER BY date_time DESC LIMIT 1`)
+  .then( (results) => results.rows[0]['date_time'].trim())
+  .catch(error => console.log(error))
+};
+
   
-module.exports = { getStationByGeocode, getStationData }
+module.exports = { getStationByGeocode, getStationNextData, getStationLastData}

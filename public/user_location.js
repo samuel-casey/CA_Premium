@@ -1046,13 +1046,10 @@ function handleSubmit() {
             'lon': closest_station.lon
         };
 
-        $.post('/station', coordinates, (response) => {stationOutput.append(response)});
-        $.post('/times', coordinates, (response) => {currentTime.append(response)});
-        $.post('/stationData', coordinates, (response) => {
-            stationData.append(response)
-            nextTide.append(response.next)
-            previousTide.append(response.last)
-        });
+        $.post('/station', coordinates, (response) => {stationOutput.append(response['station_name']); stationData.append(response['station_id'])} );
+        $.post('/times', coordinates, (response) => {currentTime.append(response)} );
+        $.post('/nextTide', coordinates, (response) => {nextTide.append(response)} );
+        $.post('/lastTide', coordinates, (response) => {previousTide.append(response)} );
     });
  
 };
