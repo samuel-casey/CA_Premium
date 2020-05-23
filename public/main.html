@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Tides Animation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./sketch.js"></script>
+</head>
+<body>
+    <div id='inputContainer'>
+        <p id="inputInstructions">enter the location of a U.S. beach or select from list ⏬ and press 🌊 for tide estimates</p>    
+        <input id='locationInput' onkeyup="enterInput()"></input> 
+        <div id="submitLocation"  onclick="handleSubmit();">🌊</div>
+        <div id="stationList">⏬</div>
+        <p id="stationOutput"></p>
+        <div id="info">info</div>
+    </div>
+    <div id="currentTime"> </div>
+    <div id="nextTide"> </div>
+    <div id="lastTide"> </div>
+    <div id="startSim"> </div>
+    <div id="waveBox" ></div>
+</body>
+
+</html>

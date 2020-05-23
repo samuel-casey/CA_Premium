@@ -1,0 +1,159 @@
+body {
+    font-family: 'Baloo Chettan 2';
+    /* font-weight: bold; */
+    display: grid;
+    grid-template-rows: 2fr 1fr 16fr 2fr;
+    grid-template-columns: 1fr 6fr 1fr;
+    width: 100vw;
+    height: 85vh;
+    opacity: .8;
+}
+
+#nextTide, #lastTide, #currentTime, #startSim {
+    font-size: .65em;
+    border-radius: 25%;
+    background: lightcyan;
+    color: navy;
+    width: 5em;
+    text-align: center;
+    height: fit-content;
+    align-self: center;
+    justify-self: center;
+}
+
+#nextTide, #lastTide {
+    grid-row: 3;
+}
+
+#nextTide {
+    grid-column: 3;
+}
+
+#lastTide {
+    grid-column: 1;
+}
+
+#currentTime {
+    grid-column:2;
+    grid-row: 2;
+    width: 10em;
+}
+
+#startSim {
+    grid-row: 4;
+    grid-column: 2;
+    background: rgba(7, 233, 222, 0.685);
+    font-size: .75em;
+    align-self: center;
+    width: fit-content;
+    padding: 5px;
+}
+
+#waveBox{
+    grid-row: 3;
+    grid-column: 2;
+    text-align: center;
+    margin: 10px;
+}
+
+#locationInput {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: .75em;
+    height: 1em;
+    background: rgba(120, 153, 207, 0.479);
+    opacity: 70%;
+    border: 2px solid rgba(0, 30, 139, 0.87);
+    padding-left: 0.25em;
+    color:darkblue;
+    font-style: italic;
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    grid-row: 2;
+    grid-column: 1;
+    left: 3px;
+    position: relative;
+}
+
+#submitLocation {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: .55em;
+    background: darkblue;
+    opacity: 65%;
+    border: 2px solid rgba(7, 233, 222, 0.685);
+    color:darkblue;
+    text-align: center;
+    position: relative;
+    justify-self: center;
+    align-self: center;
+    display: inline;
+    grid-row: 2;
+    grid-column: 2;
+}
+
+#inputInstructions {
+    font-size: 0.5em;
+    align-self: flex-start;
+    text-align: center;
+    grid-row: 1;
+    grid-column: 2;
+    color: darkblue;
+    font-weight: bold;
+    justify-self: center;
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    line-height: .5em;
+}
+
+#inputContainer {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: flex-start;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: .75fr 1fr;
+    grid-template-columns: 12fr 1fr 1fr;
+    justify-content: center;
+    flex-direction: column;
+    width: 65%;
+    padding-bottom: 5px;
+}
+
+
+#stationList {
+    align-self: center;
+    font-size: .87em;
+    right: 0;
+    position: relative;
+    grid-row: 2;
+    grid-column: 3;
+    opacity: .8;
+}
+
+#stationOutput {
+    font-size: 0.75em;
+    text-align: center;
+    grid-column: 1 / span 4;
+    line-height: 0.25em;
+}
+
+#info {
+    font-size: .5em;
+    grid-row: 2;
+    grid-column: 4;
+    font-weight: bold; 
+    font-style: italic;
+    color:rgb(19, 255, 255);
+    background: darkblue;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+    height: 1.5em;
+    align-self: center;
+    justify-self: left;
+    position: relative;
+    width: 2.5em;
+    opacity: 0.7;
+}

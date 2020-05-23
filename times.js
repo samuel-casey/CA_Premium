@@ -36,4 +36,11 @@ function calcTimeAtStation(coordinates) {
     });
   
 }
-module.exports = { calcTimeAtStation }
+
+function calcRealtime(stationId) {
+    console.log(`realtime stationId ${stationId}`)
+    stationId = stationId * 2;
+    return stationId
+}
+
+module.exports = { calcTimeAtStation, calcRealtime }

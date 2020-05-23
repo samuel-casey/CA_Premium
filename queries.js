@@ -129,5 +129,8 @@ function getStationLastData(stationId, timeAtStation) {
   .catch(error => console.log(error))
 };
 
+function getBeachSize(stationId, ) {
   
-module.exports = { getStationByGeocode, getStationNextData, getStationLastData}
+}
+  
+module.exports = { getStationByGeocode, getStationNextData, getStationLastData, getBeachSize}

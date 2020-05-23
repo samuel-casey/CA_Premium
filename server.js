@@ -58,4 +58,11 @@ app.post('/nextTide', async (req, res, next) => {
   res.status(200).send(stationData);
 })
 
+app.post('/beachSize', async (req, res, next) => {
+  const station = await db.getStationByGeocode(req.body);
+  const stationId = station['station_id']
+  const realtimeLevel = await timeCalc.calcRealtime(stationId);
+  res.status(200).send(realtimeLevel)
+})
+
 app.listen(8000, () => console.log('server running'))
