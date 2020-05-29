@@ -1136,10 +1136,6 @@ const stationData = document.querySelector('#stationData');
 const nextTide = $('#nextTide');
 const lastTide = $('#lastTide');
 
-function getGeocodeOfInput (userlocation, locationParams) {
-    return $.get('https://maps.googleapis.com/maps/api/geocode/json', locationParams) 
-    }  
-
 function getStation (coordinates) {
     return $.post('/station', coordinates)
 }
@@ -1155,22 +1151,18 @@ function addStationEl(station) {
 } 
 
 function handleSubmit() {
-    const userLocation = document.querySelector('#locationInput').value;
+    const userLocation = {
+        address: document.querySelector('#locationInput').value
+    }
 
-    locationParams = {
-        address:`${userLocation}`,
-        // need to hide this on the server
-        key:"AIzaSyDxknbsdX9jiMi-hSM6hl2ntApxiDvZZ84"
-    };
+    // document.querySelector('#locationInput').value;
 
-    getGeocodeOfInput(userLocation, locationParams)
+    $.post('/userGeocode', userLocation)
     .then((response) => {
-        // get the geocodes from google
-        googleLat = (Math.round(response['results'][0]['geometry']['location'].lat * 1000) / 1000);
-        googleLon = (Math.round(response['results'][0]['geometry']['location'].lng * 1000) / 1000);
-        // show the user their geocode based on their current location
-        $("#geocode").html(`(${googleLat}, ${googleLon})`);
         
+        const googleLat = response.lat
+        const googleLon = response.lon
+
         //unsorted list of distances b/w user location and station locations
         const unsorted_distances = []
 
@@ -1193,6 +1185,7 @@ function handleSubmit() {
             'lat': closest_station.lat,
             'lon': closest_station.lon
         }
+        
         return new Promise ( (resolve, reject ) => {
             if (coordinates) {
                 resolve(coordinates)
@@ -1201,12 +1194,12 @@ function handleSubmit() {
             }
         })
     })
+    
     .then((coordinates) => getStation(coordinates))
 
     .then((station) => addStationEl(station))
 
     .catch(error => console.log(error))
-
 };   
 
     
