@@ -37,10 +37,5 @@ function calcTimeAtStation(coordinates) {
   
 }
 
-function calcRealtime(stationId) {
-    console.log(`realtime stationId ${stationId}`)
-    stationId = stationId * 2;
-    return stationId
-}
 
-module.exports = { calcTimeAtStation, calcRealtime }
+module.exports = { calcTimeAtStation }

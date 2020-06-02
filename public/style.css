@@ -9,6 +9,19 @@ body {
     opacity: .8;
 }
 
+a {
+    text-decoration: none;
+    color: lightcyan;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
 #nextTide, #lastTide, #currentTime, #startSim {
     font-size: .65em;
     border-radius: 25%;
@@ -86,7 +99,7 @@ body {
     color:darkblue;
     text-align: center;
     position: relative;
-    justify-self: center;
+    justify-self: left;
     align-self: center;
     display: inline;
     grid-row: 2;
@@ -114,7 +127,7 @@ body {
     justify-self: center;
     display: grid;
     grid-template-rows: .75fr 1fr;
-    grid-template-columns: 12fr 1fr 1fr;
+    grid-template-columns: 12fr 1fr 1fr 1fr;
     justify-content: center;
     flex-direction: column;
     width: 65%;
@@ -123,7 +136,7 @@ body {
 
 
 #stationList {
-    align-self: center;
+    justify-self: left;
     font-size: .87em;
     right: 0;
     position: relative;
@@ -154,6 +167,6 @@ body {
     align-self: center;
     justify-self: left;
     position: relative;
-    width: 2.5em;
+    width: 3em;
     opacity: 0.7;
 }
