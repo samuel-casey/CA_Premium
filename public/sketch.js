@@ -11,11 +11,12 @@ let amplitude = 600;
 let period = 4;
 
 let userLocation = window.document.querySelector('#locationInput').value
-let beachSize = 0.25;
+let beachSize = 100;
 
 let sketch = function (p) {
     // p5 GLOBALS //
-    let x = amplitude * p.sin((p.frameCount / period) * p.TWO_PI);;
+    let x = 0;
+    let lowerBound = -20;
     let y = 0;
     let x2 = 0;
     let x3 = 0;
@@ -31,6 +32,12 @@ let sketch = function (p) {
     b3 = p.lerpColor(b1, b2, 0.35);
 
     let minWave = 150;
+    let upperBound = 500;
+
+
+    // let maxBound = 500;
+    // let stationBound = map(0)
+    // if stationBound > 
 
     function setGradient(x1, y1, w, h, c1, c2, axis) {
         p.noFill();
@@ -61,7 +68,7 @@ let sketch = function (p) {
         p.createCanvas(window.innerWidth / 1.25, window.innerHeight / 3 * 2);
         let x = amplitude * p.sin((p.frameCount / period) * p.TWO_PI);
 
-        setGradient(b1, b2);
+        setGradient(0, 0, window.innerWidth / 1.5, window.innerHeight / 3 * 2, b2, b1, X_AXIS);
 
         let userLocation = p.select('#locationInput').value()
         p.simulate()
@@ -94,7 +101,7 @@ let sketch = function (p) {
             x3 + p.width / p.random(2, 2.01), x4 + p.width / 2,
             x2 + p.width / 1.98, p.height)
 
-        if (x > (minWave * beachSize)) { changeDirection = true }
+        if (x > upperBound) { changeDirection = true }
 
         //if the circle passes the right side, change the direction
         //effects of direction change happen below
@@ -102,7 +109,7 @@ let sketch = function (p) {
         //if the circle passes the left side (or becomes equal to 0)
         //changes the direction, effects are in the next if statement below
 
-        if (x >= 0 && changeDirection == false) {
+        if (x >= lowerBound && changeDirection == false) {
             x = x + 1
             x2 = x + 2
             x3 = x3 + .15
@@ -123,7 +130,7 @@ let sketch = function (p) {
         canv2.background(w4);
 
         p.image(canv2, 0, 0);
-
+        console.log(x)
     }
     
     p.simulate = function() {
@@ -174,12 +181,15 @@ function addTideEls(station) {
     const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
 
     const nextTideType = nextTideObj["type"].trim()
+
+    const nextTideLevel = nextTideObj["v"]
+    
     let nextTideEl
 
     if (nextTideType == 'H') {
-        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}igh @ ${nextDateTime}</div>`
+        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}igh @ ${nextDateTime} (${nextTideLevel}ft)</div>`
     } else {
-        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}ow @ ${nextDateTime}</div>`
+        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}ow @ ${nextDateTime} (${nextTideLevel}ft)</div>`
     }
 
     if (nextTide.children().length == 0) {
@@ -193,12 +203,15 @@ function addTideEls(station) {
     const lastDateTime = lastTideObj["t"].trim().slice(11, 16)
 
     const lastTideType = lastTideObj["type"].trim()
+
+    const lastTideLevel = lastTideObj["v"]
+
     let lastTideEl
 
     if (lastTideType == 'H') {
-        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}igh @ ${lastDateTime}</div>`
+        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}igh @ ${lastDateTime} (${lastTideLevel}ft)</div>`
     } else {
-        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}ow @ ${lastDateTime}</div>`
+        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}ow @ ${lastDateTime} (${lastTideLevel}ft)</div>`
     }
 
     if (lastTide.children().length == 0) {
