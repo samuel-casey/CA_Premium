@@ -24,7 +24,7 @@ app.use(
 )
 
 app.get('/', (req, res, next) => {
-    res.sendFile('C:/CA_Premium/tides_vis/public/main.html')
+    res.sendFile('./public/main.html')
 })
 
 app.get('/geolocate', (req, res, next) => {
