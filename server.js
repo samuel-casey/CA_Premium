@@ -34,14 +34,37 @@ app.get('/geolocate', (req, res, next) => {
 app.post('/station', async (req, res, next) => {
   
   const userGeocode = await getGeocodeOfInput(req.body);
-  const stationNearUser = await findStationClosestToUser(userGeocode)
+  const stationNearUser = await findStationClosestToUser(userGeocode);
   const station = await db.getStationByGeocode(stationNearUser); // gets station ID
   station.current_time = await timeCalc.calcTimeAtStation(stationNearUser)
-  // const tide_data_objs = await db.getStationNextData(station.station_id, station.current_time) // gets now void data from db
-  // station.last_tide = tide_data_objs.rows[1]
-  // station.next_tide = tide_data_objs.rows[0]
   res.status(200).send(station);
   res.end();
+})
+
+
+
+app.post('/beach', async (req, res, next) => {
+  
+  
+    // const range_size = req.body["range_size"]
+    const range_size = "S"
+
+    if (range_size == "S") {
+      rangeSize = 1.5
+    } else if (range_size == "M") {
+      rangeSize = 2
+    } else if (range_size == "L") {
+      rangeSize = 2.75
+    } else {
+      rangeSize = 3.5
+    }
+
+  
+  const data = {
+    "rangeSize": rangeSize,
+
+  }
+  res.status(200).send(data)
 })
 
 

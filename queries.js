@@ -16,10 +16,11 @@ async function getStationByGeocode(coordinates) {
     return pool.query(`SELECT * FROM ${stations_table} WHERE lat = $1 AND lon = $2`, [coords.latitude, coords.longitude])
     .then( (results) => 
     {
-      
+
       stationData = {
         'station_id': results.rows[0]['station_id'].trim(),
-        'station_name': results.rows[0]['station_name'].trim()
+        'station_name': results.rows[0]['station_name'].trim(),
+        'range_size': results.rows[0]['range_size']
       }
       
       return stationData
@@ -27,49 +28,6 @@ async function getStationByGeocode(coordinates) {
     )
     .catch(error => console.log(error));
 };
-
-// async function getStationNextData(stationId, timeAtStation) {
-//   const client = await pool.connect()
-//   const today = timeAtStation.toString()
-
-//   console.log(today)
-//   const stationTable = 'public._' + stationId + '_2020'
-  
-//   try {
-//     await client.query('BEGIN')
-//     const dropQuery = "DROP TABLE IF EXISTS temp_table"
-
-//     await client.query(dropQuery)
-    
-//     const tableQuery = "CREATE TEMPORARY TABLE temp_table (date_time character(21), water_level character(7), type character(1));"
-
-//     await client.query(tableQuery)
-    
-//     const nextTideQuery = 'INSERT INTO temp_table (date_time, water_level, type) (SELECT date_time, water_level, type FROM ' +  stationTable + ' WHERE date_time > $1 LIMIT 1)';
-//     const lastTideQuery = 'INSERT INTO temp_table (date_time, water_level, type) (SELECT date_time, water_level, type FROM ' +  stationTable + ' WHERE date_time < $1 ORDER BY date_time DESC LIMIT 1)';
-
-//     await client.query(nextTideQuery, [today])
-//     await client.query(lastTideQuery, [today])
-    
-//     const results = await client.query("SELECT * FROM temp_table")
-
-//     await client.query('COMMIT')
-
-//     return results
-//   } catch (e) {
-//     await client.query('ROLLBACK')
-//     throw e
-//   } finally {
-//     client.release()
-//   }
-// }
-
-// function getStationLastData(stationId, timeAtStation) {
-//   const today = timeAtStation.toString()
-//   return pool.query(`SELECT * FROM _${stationId}_2020 WHERE date_time < '${today}' ORDER BY date_time DESC LIMIT 1`)
-//   .then( (results) => results.rows[0])
-//   .catch(error => console.log(error))
-// };
 
 function addZeroes(lat, lon) {
   lat = lat.toString()
