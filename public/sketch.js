@@ -580,7 +580,6 @@ function countTime(startTime, lastTime, nextTime) {
     let estTimeNum = lTime + completionAmt
 
     let estTime = new Date(baseDate.setTime(estTimeNum))
-
 }
 
 // add 1 to minutes, add 1 to hours if minutes > 59 
