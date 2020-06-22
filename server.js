@@ -24,11 +24,7 @@ app.use(
 )
 
 app.get('/', (req, res, next) => {
-    res.sendFile('./tides_vis/public/main.html')
-})
-
-app.get('/geolocate', (req, res, next) => {
-  res.render('user_location.ejs')
+    res.sendFile(__dirname + './public')
 })
 
 app.post('/station', async (req, res, next) => {
@@ -40,6 +36,8 @@ app.post('/station', async (req, res, next) => {
   res.status(200).send(station);
   res.end();
 })
+
+console.log(__dirname)
 
 app.post('/beach', async (req, res, next) => {
   
