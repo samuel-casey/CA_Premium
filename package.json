@@ -1,14 +1,17 @@
 {
     "name": "tides_vis",
     "version": "1.0.0",
-    "description": "This repository will house a webapp that shows a real-time visualization of tides in various locations around the world",
+    "description": "This app shows a real-time estimate of the tide level at various locations across the U.S.",
     "main": "server.js",
     "scripts": {},
+    "keywords": [
+        "heroku"
+      ],
+    "author": "samuel-casey",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/samuel-casey/CA_Premium.git"
     },
-    "author": "",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/samuel-casey/CA_Premium/issues"
@@ -25,5 +28,8 @@
         "morgan": "^1.10.0",
         "pg": "^7.18.2",
         "postgres": "^1.0.2"
+    },
+    "engines": {
+        "node": "12.14.1"
     }
 }
