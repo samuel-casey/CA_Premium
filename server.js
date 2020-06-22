@@ -41,8 +41,6 @@ app.post('/station', async (req, res, next) => {
   res.end();
 })
 
-
-
 app.post('/beach', async (req, res, next) => {
   
   
@@ -1130,4 +1128,12 @@ function findStationClosestToUser(userCoordinates) {
         })
 }
 
+
+let port = 
 app.listen(8000, () => console.log('server running'))
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port, () => console.log(`tides-vis app running on port:${port}`));
