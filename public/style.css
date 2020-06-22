@@ -1,94 +1,192 @@
-* {
-    box-sizing: border-box;
-}
-
 body {
-    display: flex;
-    opacity: 1;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(39, 53, 100);
-    background-size: 100%;
-}
-
-.time-container {
+    font-family: 'Baloo Chettan 2';
+    padding-top: .5em;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-    width: 95%;
-    height: 95%;
-    align-self: flex-start;
-    justify-self: center;
-}
-
-#next_high {
-    grid-column: 4;
-    grid-row: 3;
-    align-self: center;
-}
-
-#next_low {
-    grid-column: 2;
-    grid-row: 3;
-    align-self: center;
-}
-
-#current_time {
-    grid-column: 3;
-    grid-row: 2;
-    align-self: flex-start;
-    opacity: 1;
-}
-
-#play_button {
-    grid-column: 3;
-    grid-row: 5;
-    justify-self: center;
-    align-self: flex-end;
-}
-
-#current_time,
-#next_low,
-#next_high {
-    display: flex;
-    font-family: 'Arial';
-    font-size: 2em;
-    color: rgba(214, 241, 243, 0.945);
-    font-weight: bold;
-    margin: 0 auto;
-    opacity: .86;
-    height: 1.2em;
-    width: 2.5em;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 1em;
-    z-index: 1;
-}
-
-#location {
-    color: cyan;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 2em;
-    position: relative;
-    margin: 0 auto;
-    grid-column: 3;
-    grid-row: 1;
+    grid-template-rows: 2fr 1fr 16fr 2fr;
+    grid-template-columns: 1fr 6fr 1fr;
+    width: 100vw;
+    height: 85vh;
     opacity: .8;
-    align-self: center;
-}
-
-#info {
-    grid-column: 5;
-    grid-row: 1;
-    align-self: flex-start;
-    justify-self: flex-end;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 2em;
-    font-style: italic;
-    color: white;
 }
 
 a {
     text-decoration: none;
+    color: navy;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#nextTide, #lastTide, #currentTime, #startSim {
+    font-size: .65em;
+    border-radius: 25%;
+    background: lightcyan;
+    color: navy;
+    width: 5em;
+    text-align: center;
+    height: fit-content;
+    align-self: center;
+    justify-self: center;
+}
+
+#clock {
+    color: lightslategray;
+    font-size: 14px;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+#nextTide, #lastTide {
+    grid-row: 3;
+}
+
+#localClock {
+    width: 50em;
+    height: 65px;
+    background: lightcyan;
+    color: navy;
+    align-self: center;
+    justify-self: center;
+    grid-column:2;
+    grid-row: 2;
+    text-align: center;
+}
+
+.infoBody {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    width: 90vw;
+}
+
+#spin1 {
+    grid-row: 2;
+    grid-column: 4;
+}
+
+#nextTide {
+    grid-column: 3;
+}
+
+#lastTide {
+    grid-column: 1;
+}
+
+#waveBox{
+    grid-row: 3;
+    grid-column: 2;
+    text-align: center;
+    margin: 10px;
+}
+
+#locationInput {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: .75em;
+    height: 1em;
+    background: rgba(120, 153, 207, 0.479);
+    opacity: 70%;
+    border: 2px solid rgba(0, 30, 139, 0.87);
+    padding-left: 0.25em;
+    color:darkblue;
+    font-style: italic;
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    grid-row: 2;
+    grid-column: 1;
+    left: 3px;
+    position: relative;
+}
+
+#submitLocation {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: .55em;
+    background: darkblue;
+    opacity: 65%;
+    border: 2px solid rgba(7, 233, 222, 0.685);
+    color:darkblue;
+    text-align: center;
+    position: relative;
+    justify-self: left;
+    align-self: center;
+    display: inline;
+    grid-row: 2;
+    grid-column: 2;
+}
+
+#inputInstructions {
+    font-size: 1em;
+    align-self: flex-start;
+    text-align: center;
+    grid-row: 1;
+    grid-column: 2;
+    color: darkblue;
+    font-weight: bold;
+    justify-self: center;
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    line-height: 1em;
+}
+
+#inputContainer {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: flex-start;
+    justify-self: center;
+    display: grid;
+    grid-template-rows: .75fr 1fr;
+    grid-template-columns: 12fr 1fr 1fr 1fr;
+    justify-content: center;
+    flex-direction: column;
+    width: 85%;
+    padding-bottom: 5px;
+}
+
+#stationList {
+    justify-self: left;
+    align-self: center;
+    font-size: .87em;
+    right: 0;
+    position: relative;
+    grid-row: 2;
+    grid-column: 3;
+    opacity: .8;
+}
+
+#stationOutput {
+    font-size: 1em;
+    text-align: center;
+    grid-column: 1 / span 4;
+    line-height: 0.25em;
+    font-weight: bold;
+}
+
+
+#info {
+    font-size: .5em;
+    grid-row: 2;
+    grid-column: 3;
+    font-weight: bold; 
+    font-style: italic;
+    background: cyan;
+    border: 1px solid navy;
+    text-align: center;
+    border-radius: 50%;
+    position: relative;
+    height: 1.5em;
+    align-self: center;
+    justify-self: left;
+    position: relative;
+    width: 3em;
+    opacity: 0.7;
 }

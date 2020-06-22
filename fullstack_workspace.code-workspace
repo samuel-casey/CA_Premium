@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "csvs"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "tides_vis"
+	}
+}
