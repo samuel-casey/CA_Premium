@@ -9,12 +9,11 @@ const engines = require('consolidate')
 const ejs = require('ejs')
 const timeCalc = require('./times')
 
+// app.engine('ejs', engines.ejs)
+// app.set('views', __dirname + '/views')
+// app.set('view engine', 'ejs')
 
-app.engine('ejs', engines.ejs)
-app.set('views', __dirname + '/views')
-app.set('view engine', 'ejs')
-
-app.use(express.static('C:/CA_Premium/tides_vis/public'))
+app.use(express.static(__dirname + '/public'))
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(
@@ -24,7 +23,6 @@ app.use(
 )
 
 app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + '/public')
     res.render('main.html')
 })
 
