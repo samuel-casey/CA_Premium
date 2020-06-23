@@ -23,7 +23,7 @@ app.use(
 )
 
 app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + 'public/main.html')
+    res.sendFile(__dirname + '/public/main.html')
 })
 
 app.post('/station', async (req, res, next) => {
@@ -36,7 +36,7 @@ app.post('/station', async (req, res, next) => {
   res.end();
 })
 
-console.log(__dirname)
+console.log(`DIRNAME: ${__dirname}`)
 
 app.post('/beach', async (req, res, next) => {
   
