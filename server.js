@@ -23,7 +23,7 @@ app.use(
 )
 
 app.get('/', (req, res, next) => {
-    res.render('main.html')
+    res.sendFile('/main.html')
 })
 
 app.post('/station', async (req, res, next) => {
