@@ -40,7 +40,6 @@ console.log(`DIRNAME: ${__dirname}`)
 
 app.post('/beach', async (req, res, next) => {
   
-  
     // const range_size = req.body["range_size"]
     const range_size = "S"
 

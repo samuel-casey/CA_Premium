@@ -91,7 +91,6 @@ a:visited {
     grid-column: 2;
     grid-row: 1;
     font-size: .75em;
-    height: 1em;
     background: rgba(120, 153, 207, 0.479);
     opacity: 70%;
     border: 2px solid rgba(0, 30, 139, 0.87);
