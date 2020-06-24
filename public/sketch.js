@@ -160,8 +160,6 @@ let sketch = function (p) {
     function resetSketch(startingPosition, upperBound, active) {
         startingPosition = startingPosition;
         upperBound = upperBound;
-        console.log(`ACTIVE: ${active}`)
-        console.log(`RESET: ${upperBound}`)
 
         canv = p.createCanvas(window.innerWidth / 1.25, window.innerHeight / 3 * 2.5);
 
@@ -225,7 +223,6 @@ let sketch = function (p) {
     // end p5 Setup //
 
     p.draw = function () {
-        console.log(`draw: ${startingPosition}`)
 
         // canv2 = p.createGraphics(p.width / rangeSize - deepWater, p.height);
 
