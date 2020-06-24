@@ -334,10 +334,8 @@ function addTideEls(tideData) {
     
     dataLoaded(tideData).then( () => {
         console.log(`tideData bf nTO ${Object.keys(tideData)}`)
-        nTOTest = tideData["next_tide"]
         console.log(`nto exp val: ${tideData["next_tide"]}`)
-        console.log(nTOTest)
-        console.log(typeof nTOTest)
+        
     })
 
     function msToHoursMins(ms) {
@@ -419,6 +417,9 @@ function addTideEls(tideData) {
 
     return new Promise((resolve, reject) => {
         if (tideData) {
+            nTOTest = tideData["next_tide"]
+            console.log(nTOTest)
+            console.log(typeof nTOTest)
             resolve(tideData)
         } else {
             reject(console.log('could not add tide els'))
