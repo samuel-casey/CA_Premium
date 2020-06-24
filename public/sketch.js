@@ -337,8 +337,8 @@ function addTideEls(tideData) {
     
     dataLoaded(tideData).then( () => {
         console.log(`tideData bf nTO ${Object.keys(tideData)}`)
-        nTOTest = tideData.next_tide
-        console.log(`nto exp val: ${tideData.next_tide}`)
+        nTOTest = tideData["next_tide"]
+        console.log(`nto exp val: ${tideData["next_tide"]}`)
         console.log(nTOTest)
         console.log(typeof nTOTest)
     })
