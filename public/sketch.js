@@ -336,6 +336,7 @@ function addTideEls(tideData) {
     const dataLoaded = async function (tideData) { return tideData }
     
     dataLoaded(tideData).then( () => {
+        console.log(`tideData bf nTO ${tideData}`)
         const nTOTest = tideData.next_tide
         console.log(nTOTest)
         console.log(typeof nTOTest)
