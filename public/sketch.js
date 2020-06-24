@@ -330,96 +330,85 @@ function addStationEl(station) {
 
 function addTideEls(tideData) {
 
-    // const dataLoaded = async function (tideData) { return tideData }
-    
-    // dataLoaded(tideData).then( () => {
-    //     console.log(`tideData bf nTO ${Object.keys(tideData)}`)
-    //     console.log(`nto exp val: ${tideData["next_tide"]}`)
+    function msToHoursMins(ms) {
+        hrs = Math.floor((ms / 3600000) % 24)
+        min = Math.floor((ms  / 60000) % 60)
         
-    // })
+        formattedString = `${hrs}hr ${min}mins`
+        return formattedString
+    }
 
-    // function msToHoursMins(ms) {
-    //     hrs = Math.floor((ms / 3600000) % 24)
-    //     min = Math.floor((ms  / 60000) % 60)
-        
-    //     formattedString = `${hrs}hr ${min}mins`
-    //     return formattedString
-    // }
+    const nextTideObj = tideData.next_tide
+    const lastTideObj = tideData.last_tide
+    const currentTime = tideData.current_time
+    const rangeSize = tideData.range_size
 
-    // const nextTideObj = tideData.next_tide
-    // const lastTideObj = tideData.last_tide
-    // const currentTime = tideData.current_time
-    // const rangeSize = tideData.range_size
+    console.log(`tideData: ${tideData}`)
+    console.log(typeof tideData.next_tide)
 
-    // console.log(`tideData: ${tideData}`)
-    // console.log(typeof tideData.next_tide)
+    const nextTideTimeString = nextTideObj["t"].trim()
 
-    // const nextTideTimeString = nextTideObj["t"].trim()
+    const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
 
-    // const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
+    // calculate time til next tide in hours
+    const nextDT = new Date(nextTideTimeString)
+    const currentDT = new Date(currentTime)
+    const timeTil = nextDT - currentDT
+    const timeTilFormatted = msToHoursMins(timeTil);
 
-    // // calculate time til next tide in hours
-    // const nextDT = new Date(nextTideTimeString)
-    // const currentDT = new Date(currentTime)
-    // const timeTil = nextDT - currentDT
-    // const timeTilFormatted = msToHoursMins(timeTil);
+    // element with timeTilHours
+    const timeTilEl = `<div id="timeTil">Approx. time until next tide: ${timeTilFormatted}</div>`
 
-    // // element with timeTilHours
-    // const timeTilEl = `<div id="timeTil">Approx. time until next tide: ${timeTilFormatted}</div>`
+    if ($("#timeTil")) {
+        $("#localClock").remove($("#timeTil"))
+        $("#localClock").append(timeTilEl)
+    } else {
+        $("#localClock").append(timeTilEl)
+    }
 
-    // if ($("#timeTil")) {
-    //     $("#localClock").remove($("#timeTil"))
-    //     $("#localClock").append(timeTilEl)
-    // } else {
-    //     $("#localClock").append(timeTilEl)
-    // }
+    const nextTideType = nextTideObj["type"].trim()
 
-    // const nextTideType = nextTideObj["type"].trim()
+    const nextTideLevel = nextTideObj["v"]
 
-    // const nextTideLevel = nextTideObj["v"]
+    let nextTideEl
 
-    // let nextTideEl
+    if (nextTideType == 'H') {
+        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}igh @ ${nextDateTime} (${nextTideLevel}ft)</div>`
+    } else {
+        nextTideEl = `<div><b>Next tide:</b> ${nextTideType}ow @ ${nextDateTime} (${nextTideLevel}ft)</div>`
+    }
 
-    // if (nextTideType == 'H') {
-    //     nextTideEl = `<div><b>Next tide:</b> ${nextTideType}igh @ ${nextDateTime} (${nextTideLevel}ft)</div>`
-    // } else {
-    //     nextTideEl = `<div><b>Next tide:</b> ${nextTideType}ow @ ${nextDateTime} (${nextTideLevel}ft)</div>`
-    // }
+    if (nextTide.children().length == 0) {
+        nextTide.append(nextTideEl);
+    } else {
+        nextTide.children().remove()
+        nextTide.append(nextTideEl)
+    }
 
-    // if (nextTide.children().length == 0) {
-    //     nextTide.append(nextTideEl);
-    // } else {
-    //     nextTide.children().remove()
-    //     nextTide.append(nextTideEl)
-    // }
+    //last tide
+    const lastDateTime = lastTideObj["t"].trim().slice(11, 16)
 
-    // //last tide
-    // const lastDateTime = lastTideObj["t"].trim().slice(11, 16)
+    const lastTideType = lastTideObj["type"].trim()
 
-    // const lastTideType = lastTideObj["type"].trim()
+    const lastTideLevel = lastTideObj["v"]
 
-    // const lastTideLevel = lastTideObj["v"]
+    let lastTideEl
 
-    // let lastTideEl
+    if (lastTideType == 'H') {
+        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}igh @ ${lastDateTime} (${lastTideLevel}ft)</div>`
+    } else {
+        lastTideEl = `<div><b>Last tide:</b> ${lastTideType}ow @ ${lastDateTime} (${lastTideLevel}ft)</div>`
+    }
 
-    // if (lastTideType == 'H') {
-    //     lastTideEl = `<div><b>Last tide:</b> ${lastTideType}igh @ ${lastDateTime} (${lastTideLevel}ft)</div>`
-    // } else {
-    //     lastTideEl = `<div><b>Last tide:</b> ${lastTideType}ow @ ${lastDateTime} (${lastTideLevel}ft)</div>`
-    // }
-
-    // if (lastTide.children().length == 0) {
-    //     lastTide.append(lastTideEl);
-    // } else {
-    //     lastTide.children().remove()
-    //     lastTide.append(lastTideEl)
-    // }
+    if (lastTide.children().length == 0) {
+        lastTide.append(lastTideEl);
+    } else {
+        lastTide.children().remove()
+        lastTide.append(lastTideEl)
+    }
 
     return new Promise((resolve, reject) => {
         if (tideData) {
-            nTOTest = tideData["next_tide"]
-            console.log(nTOTest)
-            console.log(typeof nTOTest)
             resolve(tideData)
         } else {
             reject(console.log('could not add tide els'))
