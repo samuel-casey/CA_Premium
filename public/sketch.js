@@ -341,17 +341,17 @@ function addTideEls(tideData) {
         return formattedString
     }
 
-    console.log(`addTideEls\n${Object.keys(tideData)}`)
-
     const nextTideObj = tideData.next_tide
     const lastTideObj = tideData.last_tide
     const currentTime = tideData.current_time
     const rangeSize = tideData.range_size
 
+    const nextTideTimeString = nextTideObj["t"].trim()
+
     const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
 
     // calculate time til next tide in hours
-    const nextDT = new Date(nextTideObj["t"].trim())
+    const nextDT = new Date(nextTideTimeString)
     const currentDT = new Date(currentTime)
     const timeTil = nextDT - currentDT
     const timeTilFormatted = msToHoursMins(timeTil);
