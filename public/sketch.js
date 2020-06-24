@@ -333,6 +333,14 @@ function addStationEl(station) {
 
 function addTideEls(tideData) {
 
+    let dataLoaded = async function (tideData) { return tideData }
+    
+    dataLoaded.then( () => {
+        const nTOTest = tideData.next_tide
+        console.log(nTOTest)
+        console.log(typeof nTOTest)
+    })
+    
     function msToHoursMins(ms) {
         hrs = Math.floor((ms / 3600000) % 24)
         min = Math.floor((ms  / 60000) % 60)
