@@ -502,7 +502,7 @@ function handleSubmit() {
 };
 
 function getLastAndNext(station) {
-    const today = new Date(station.current_time)
+    const today = new Date(station.current_time.replace(/-/g, '/'))
 
     const yesterday = new Date(today.getTime())
     yesterday.setDate(today.getDate() - 1)
