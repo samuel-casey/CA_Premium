@@ -346,6 +346,14 @@ function addTideEls(tideData) {
     const currentTime = tideData.current_time
     const rangeSize = tideData.range_size
 
+    console.log(`NT obj: ${nextTideObj}`)
+    console.log(typeof nextTideObj)
+
+    if (tideData) {
+        console.log(`NT obj IF: ${nextTideObj}`)
+        console.log('if type - ' + typeof nextTideObj)
+    }
+
     const nextTideTimeString = nextTideObj["t"].trim()
 
     const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
