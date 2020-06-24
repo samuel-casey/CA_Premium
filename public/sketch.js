@@ -344,7 +344,7 @@ function addTideEls(tideData) {
     const rangeSize = tideData.range_size
 
     console.log(`tideData: ${tideData}`)
-    console.log(tideData[0])
+    console.log(Object.entries(tideData))
 
     const nextTideTimeString = nextTideObj["t"].trim()
 
