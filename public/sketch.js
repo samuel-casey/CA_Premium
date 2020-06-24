@@ -133,8 +133,6 @@ let sketch = function (p) {
 
                 return new Promise((resolve, reject) => {
                     if (newRange) {
-                        console.log(`new sp: ${newStartingPosition}`)
-                        console.log(newUpperBound)
                         resolve(resetSketch(startingPosition = newStartingPosition, upperBound = newUpperBound, active = true));
                     } else {
                         reject("didn't reset sketch in simulate function")
@@ -495,7 +493,6 @@ function handleSubmit() {
         // TIDE TIMES
         .then((tideTimes) => {
             sketch.simulate(tideTimes);
-            console.log(sketch.simulate.newStartingPosition)
         })
 
         .catch(error => console.log(error))
