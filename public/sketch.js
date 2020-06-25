@@ -523,12 +523,15 @@ function getLastAndNext(station) {
             let predPosDistance = []
 
             for (let i = 0; i < predictions.length; i++) {
-                predictions[i].distance = Date.parse(predictions[i].t) - Date.parse(station.current_time)
+                predictions[i].distance = Date.parse(predictions[i].t.replace(/-/g, "")) - Date.parse(station.current_time.replace(/-/g, ""))
 
                 if (predictions[i].distance > 0) {
                     predPosDistance.push(predictions[i])
                 }
             }
+
+
+            //moment.js library
 
             const firstPos = function (obj) { return obj.distance > 0 };
 
