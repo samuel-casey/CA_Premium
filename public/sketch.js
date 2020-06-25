@@ -351,7 +351,6 @@ function addTideEls(tideData) {
     console.log(`l: ${lastTideObj.t}`)
     console.log(`c: ${currentTime}`)
 
-
     const nextTideTimeString = nextTideObj["t"].trim()
 
     const nextDateTime = nextTideObj["t"].trim().slice(11, 16)
@@ -537,7 +536,8 @@ function getLastAndNext(station) {
             const lastIdx = predictions.findIndex(firstPos) - 1
             const nextIdx = predictions.findIndex(firstPos)
 
-            console.log(predictions[nextIdx])
+            console.log(nextIdx)
+            console.log(lastIdx)
 
             const tideData = {
                 "next_tide": predictions[nextIdx],
