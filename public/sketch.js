@@ -347,8 +347,8 @@ function addTideEls(tideData) {
     const currentTime = tideData.current_time
 
     console.log(`tideData: ${tideData}`)
-    console.log(`n: ${nextTideObj}`)
-    console.log(`l: ${lastTideObj}`)
+    console.log(`n: ${nextTideObj.t}`)
+    console.log(`l: ${lastTideObj.t}`)
     console.log(`c: ${currentTime}`)
 
 
