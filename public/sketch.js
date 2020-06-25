@@ -534,6 +534,8 @@ function getLastAndNext(station) {
 
             const firstPos = (obj) => obj.distance > 0;
 
+            console.log(firstPos)
+
             const lastIdx = predictions.findIndex(firstPos) - 1
             const nextIdx = predictions.findIndex(firstPos)
 
