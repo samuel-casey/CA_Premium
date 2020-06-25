@@ -520,6 +520,8 @@ function getLastAndNext(station) {
         .then((data, textStatus, jqXHR) => {
             let predictions = data.predictions
 
+            console.log(predictions);
+
             let predPosDistance = []
 
             for (let i = 0; i < predictions.length; i++) {
