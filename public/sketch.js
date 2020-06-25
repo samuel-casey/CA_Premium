@@ -531,7 +531,7 @@ function getLastAndNext(station) {
                 }
             }
 
-            const firstPos = function (obj) { obj.distance > 0 };
+            const firstPos = function (obj) { return obj.distance > 0 };
 
 
             const lastIdx = predictions.findIndex(firstPos) - 1
