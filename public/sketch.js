@@ -481,7 +481,6 @@ function handleSubmit() {
         })
 
         .then((tideData) => {
-            console.log(`TD before return np ${Object.entries(tideData)}`)
             return new Promise((resolve, reject) => {
                 if (tideData) {
                     resolve(addTideEls(tideData))
@@ -550,7 +549,6 @@ function getLastAndNext(station) {
 
             return new Promise((resolve, reject) => {
                 if (tideData) {
-                    console.log(`GNL before resolve: ${Object.entries(tideData)}`)
                     resolve(tideData)
                 } else {
                     reject("no tideData")
