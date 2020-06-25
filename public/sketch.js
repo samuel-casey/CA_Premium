@@ -523,7 +523,7 @@ function getLastAndNext(station) {
             let predPosDistance = []
 
             for (let i = 0; i < predictions.length; i++) {
-                predictions[i].distance = Date.parse(predictions[i].t.replace(/-/g, "")) - Date.parse(station.current_time.replace(/-/g, ""))
+                predictions[i].distance = Date.parse(predictions[i].t.replace(/-/g, "/")) - Date.parse(station.current_time.replace(/-/g, "/"))
 
                 if (predictions[i].distance > 0) {
                     predPosDistance.push(predictions[i])
