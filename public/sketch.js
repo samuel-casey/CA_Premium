@@ -544,6 +544,7 @@ function getLastAndNext(station) {
 
             return new Promise((resolve, reject) => {
                 if (tideData) {
+                    console.log(`GNL before resolve: ${tideData}`)
                     resolve(tideData)
                 } else {
                     reject("no tideData")
