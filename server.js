@@ -38,29 +38,6 @@ app.post('/station', async (req, res, next) => {
 
 console.log(`DIRNAME: ${__dirname}`)
 
-app.post('/beach', async (req, res, next) => {
-  
-    // const range_size = req.body["range_size"]
-    const range_size = "S"
-
-    if (range_size == "S") {
-      rangeSize = 1.5
-    } else if (range_size == "M") {
-      rangeSize = 2
-    } else if (range_size == "L") {
-      rangeSize = 2.75
-    } else {
-      rangeSize = 3.5
-    }
-
-  
-  const data = {
-    "rangeSize": rangeSize,
-
-  }
-  res.status(200).send(data)
-})
-
 
 function getGeocodeOfInput (userLocation) {
   

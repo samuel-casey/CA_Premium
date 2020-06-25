@@ -21,7 +21,8 @@ let sketch = function (p) {
     }
 
     function changeRangeSize(stationRange) {
-
+        
+        console.log(`winner: ${window.innerWidth / 3.15}`)
         let rng = stationRange.trim()
 
         if (rng == "S") {
@@ -42,8 +43,8 @@ let sketch = function (p) {
         }
 
         if (rng == "M") {
-            let startingPosition = 350
-            let newUpperBound = 300
+            let startingPosition = window.innerWidth / 3.15
+            let newUpperBound = window.innerWidth / 6
             let newRange = {
                 'startingPosition': startingPosition,
                 'newUpperBound': newUpperBound,
@@ -145,24 +146,23 @@ let sketch = function (p) {
     let y = 0;
 
     let deepWater = 100;
-    // let upperBound = 300;
-    let lowerBound = 0;
 
     let changeDirection = false;
-    let rangeSize = 3.5;
     let b1 = p.color(245, 225, 196, 55);
     let w1 = p.color(15, 67, 139, 255);
     let w3 = p.color(15, 47, 129, 255);
     let w4 = p.lerpColor(w1, w3, 0.2);
 
+    
     function resetSketch(startingPosition, upperBound, active) {
         startingPosition = startingPosition;
         upperBound = upperBound;
 
-        canv = p.createCanvas(window.innerWidth / 1.25, window.innerHeight / 3 * 2.5);
+        canv = p.createCanvas(window.innerWidth / 1.25, window.innerHeight * 0.83);
+        
 
         if (active == true) {
-
+            
             p.loop()
 
             if ($("#highLevelTick")) {
@@ -175,16 +175,20 @@ let sketch = function (p) {
             highLevelTick = p.createDiv("|\nHighest Level\nfor interval");
             lowLevelTick = p.createDiv("|\nLowest Level\nfor interval");
 
+
+            console.log(highLevelTick.parent())
+            console.log(startingPosition + "|" + deepWater)
             highLevelTick.id("highLevelTick");
             lowLevelTick.id("lowLevelTick");
 
-            tickTextStyle = "font-size: 10px; font-weight: bold; text-align: center; white-space: pre;"
+            tickTextStyle = "font-size: 10px; font-weight: bold; text-align: center; white-space: pre; width: fit-content;"
 
-            highLevelTick.position(upperBound + startingPosition + p.textWidth(highLevelTick), p.height + 145)
-            lowLevelTick.position(startingPosition + deepWater, p.height + 145)
+            highLevelTick.position(upperBound + startingPosition - (p.textWidth(highLevelTick) / 2), 0, 'relative')
+            lowLevelTick.position(startingPosition - (p.textWidth(lowLevelTick) / 2), 0, 'relative')
 
             highLevelTick.style(tickTextStyle)
             lowLevelTick.style(tickTextStyle)
+            
         } else {
             p.noLoop()
         }
@@ -215,7 +219,7 @@ let sketch = function (p) {
 
     // p5 Setup //
     p.setup = function () {
-        resetSketch(startingPosition = 100, upperBound = 100, active = false)
+        resetSketch(startingPosition = window.innerWidth / 9, upperBound = window.innerWidth / 9, active = false)
     }
 
     // end p5 Setup //
@@ -258,12 +262,18 @@ let sketch = function (p) {
 
         // change text to divs and add position and color
 
-        if (x > upperBound) { changeDirection = true }
+        if (x > upperBound) { 
+            console.log(`UPPER:\nX - ${x}\nSP - ${startingPosition}\nUB - ${upperBound}`)
+            changeDirection = true
+         }
 
         //if the circle passes the right side, change the direction
         //effects of direction change happen below
 
-        else if (x <= 0) { changeDirection = false }
+        else if (x <= 0) { 
+            console.log(`LOWER:\nX - ${x}\nSP - ${startingPosition}\nUB - ${upperBound}`)
+            changeDirection = false 
+        }
         //if the circle passes the left side (or becomes equal to 0)
         //changes the direction, effects are in the next if statement below
 

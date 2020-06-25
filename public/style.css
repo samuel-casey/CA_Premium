@@ -23,7 +23,7 @@ a:visited {
 }
 
 #nextTide, #lastTide, #currentTime, #startSim {
-    font-size: .65em;
+    font-size: .85em;
     border-radius: 25%;
     background: lightcyan;
     color: navy;
@@ -50,7 +50,8 @@ a:visited {
 
 #localClock {
     width: 50em;
-    height: 65px;
+    font-size: 1rem;
+    height: fit-content;
     background: lightcyan;
     color: navy;
     align-self: center;
