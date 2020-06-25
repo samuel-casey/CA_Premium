@@ -26,15 +26,15 @@ let sketch = function (p) {
         let rng = stationRange.trim()
 
         if (rng == "S") {
-            let startingPosition = 500
-            let newUpperBound = 100
+            let startingPosition = window.innerWidth / 2
+            let newUpperBound = window.innerWidth / 9
             let newRange = {
                 'startingPosition': startingPosition,
                 'newUpperBound': newUpperBound,
             }
             return new Promise((resolve, reject) => {
                 if (newRange) {
-                    console.log("SP changed")
+                    console.log(`SP changed ${rng}`)
                     resolve(newRange)
                 } else {
                     reject(console.log("sp no changey changey"))
@@ -43,7 +43,7 @@ let sketch = function (p) {
         }
 
         if (rng == "M") {
-            let startingPosition = window.innerWidth / 3.15
+            let startingPosition = window.innerWidth / 4
             let newUpperBound = window.innerWidth / 6
             let newRange = {
                 'startingPosition': startingPosition,
@@ -51,7 +51,7 @@ let sketch = function (p) {
             }
             return new Promise((resolve, reject) => {
                 if (newRange) {
-                    console.log("SP changed")
+                    console.log(`SP changed ${rng}`)
                     resolve(newRange)
                 } else {
                     reject(console.log("sp no changey changey"))
@@ -60,15 +60,15 @@ let sketch = function (p) {
         }
 
         if (rng == "L") {
-            let startingPosition = 200
-            let newUpperBound = 450
+            let startingPosition = window.innerWidth / 6
+            let newUpperBound = window.innerWidth / 3
             let newRange = {
                 'startingPosition': startingPosition,
                 'newUpperBound': newUpperBound,
             }
             return new Promise((resolve, reject) => {
                 if (newRange) {
-                    console.log("SP changed")
+                    console.log(`SP changed ${rng} | ${startingPosition - newUpperBound}`)
                     resolve(newRange)
                 } else {
                     reject(console.log("sp no changey changey"))
@@ -77,15 +77,15 @@ let sketch = function (p) {
         }
 
         if (rng == "XL") {
-            let startingPosition = 100
-            let newUpperBound = 500
+            let startingPosition = window.innerWidth / 8
+            let newUpperBound = window.innerWidth / 1.5
             let newRange = {
                 'startingPosition': startingPosition,
                 'newUpperBound': newUpperBound,
             }
             return new Promise((resolve, reject) => {
                 if (newRange) {
-                    console.log("SP changed")
+                    console.log(`SP changed ${rng}`)
                     resolve(newRange)
                 } else {
                     reject(console.log("sp no changey changey"))
@@ -153,13 +153,15 @@ let sketch = function (p) {
     let w3 = p.color(15, 47, 129, 255);
     let w4 = p.lerpColor(w1, w3, 0.2);
 
+    function windowResized() {
+        p.resizeCanvas(window.innerWidth / 1.25, window.innerHeight * 0.83)
+    }
     
     function resetSketch(startingPosition, upperBound, active) {
         startingPosition = startingPosition;
         upperBound = upperBound;
 
         canv = p.createCanvas(window.innerWidth / 1.25, window.innerHeight * 0.83);
-        
 
         if (active == true) {
             
@@ -175,19 +177,18 @@ let sketch = function (p) {
             highLevelTick = p.createDiv("|\nHighest Level\nfor interval");
             lowLevelTick = p.createDiv("|\nLowest Level\nfor interval");
 
-
-            console.log(highLevelTick.parent())
-            console.log(startingPosition + "|" + deepWater)
             highLevelTick.id("highLevelTick");
             lowLevelTick.id("lowLevelTick");
 
-            tickTextStyle = "font-size: 10px; font-weight: bold; text-align: center; white-space: pre; width: fit-content;"
+            highTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content;"
+            lowTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content; transform: translateY(-100%);"
+            
+            highLevelTick.style(highTickTextStyle)
+            lowLevelTick.style(lowTickTextStyle)
 
             highLevelTick.position(upperBound + startingPosition - (p.textWidth(highLevelTick) / 2), 0, 'relative')
+            // startingPosition - (p.textWidth(lowLevelTick) / 2)
             lowLevelTick.position(startingPosition - (p.textWidth(lowLevelTick) / 2), 0, 'relative')
-
-            highLevelTick.style(tickTextStyle)
-            lowLevelTick.style(tickTextStyle)
             
         } else {
             p.noLoop()
@@ -225,12 +226,8 @@ let sketch = function (p) {
     // end p5 Setup //
 
     p.draw = function () {
-
-        // canv2 = p.createGraphics(p.width / rangeSize - deepWater, p.height);
-
-        // canv2.fill(255, 0, 0)
-        // canv2.rect(0, 0, 200, 200)
-
+        windowResized();
+        
         p.noStroke();
 
         //beach
@@ -245,7 +242,7 @@ let sketch = function (p) {
         sketch.wave = p.rect(0, 0, startingPosition + x, p.height - 30)
 
         //foam
-        for (var i = 0; i < p.height - 30; i += 75) {
+        for (var i = 0; i < p.height; i += 75) {
 
             p.fill(255);
 
@@ -566,6 +563,7 @@ async function enterInput(event) {
     if (e.keyCode == 13 || e.which == 13) {
 
         await handleSubmit();
+        $("#locationInput").val('')
     }
 };
 
