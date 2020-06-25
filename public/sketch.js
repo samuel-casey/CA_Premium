@@ -481,6 +481,7 @@ function handleSubmit() {
         })
 
         .then((tideData) => {
+            console.log(`TD before return np ${Object.entries(tideData)}`)
             return new Promise((resolve, reject) => {
                 if (tideData) {
                     resolve(addTideEls(tideData))
