@@ -423,23 +423,15 @@ function addTideEls(tideData) {
 
 function handleSubmit() {
 
-    const stationNameEl = `<div class="spinner-border text-primary justify-content-center" id="spin1" role="status">
+    const spinner = `<div class="spinner-border text-primary justify-content-center" id="spin1" role="status">
         <span class="sr-only">Loading...</span>
     </div>`
-    if (stationOutput.children().length == 0) {
-        stationOutput.append(stationNameEl);
-    }
-
-    if (nextTide.children().length == 0) {
-        nextTide.append(`<div class="spinner-border text-primary justify-content-center" id="spin2" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>`);
-    }
-    if (lastTide.children().length == 0) {
-        lastTide.append(`<div class="spinner-border text-primary justify-content-center" id="spin3" role="status">
-        <span class="sr-only">Loading...</span>
-    </div>`);
-    }
+    
+    stationOutput.append(spinner);
+    
+    nextTide.append(spinner);
+    
+    lastTide.append(spinner);
 
     const userLocation = {
         address: document.querySelector('#locationInput').value
