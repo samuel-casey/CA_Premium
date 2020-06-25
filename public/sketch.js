@@ -537,6 +537,8 @@ function getLastAndNext(station) {
             const lastIdx = predictions.findIndex(firstPos) - 1
             const nextIdx = predictions.findIndex(firstPos)
 
+            console.log(predictions[nextIdx])
+
             const tideData = {
                 "next_tide": predictions[nextIdx],
                 "last_tide": predictions[lastIdx],
