@@ -144,7 +144,7 @@ let sketch = function (p) {
     // for setGradient function
     let y = 0;
 
-    let deepWater = 100;
+    let deepWater = window.innerWidth / 18;
 
     let changeDirection = false;
     let b1 = p.color(245, 225, 196, 55);
@@ -152,11 +152,12 @@ let sketch = function (p) {
     let w3 = p.color(15, 47, 129, 255);
     let w4 = p.lerpColor(w1, w3, 0.2);
 
-    function windowResized() {
+    async function windowResized() {
         p.resizeCanvas(window.innerWidth / 1.25, window.innerHeight * 0.83)
     }
     
     function resetSketch(startingPosition, upperBound, active) {
+        
         startingPosition = startingPosition;
         upperBound = upperBound;
 
@@ -164,31 +165,46 @@ let sketch = function (p) {
 
         if (active == true) {
             
+            console.log(`Winner: ${window.innerWidth}`)
+
             p.loop()
 
-            if ($("#highLevelTick")) {
+            if ($("#highLevelTick") || $("#lowLevelTick") || $("#highLegend") || $("#lowLegend")) {
                 $("#highLevelTick").remove()
+                $("#lowLevelTick").remove()
+                $("#lowLegend").remove()
+                $("#highLegend").remove()
             }
 
-            if ($("#lowLevelTick")) {
-                $("#lowLevelTick").remove()
-            }
-            highLevelTick = p.createDiv("|\nHighest Level\nfor interval");
-            lowLevelTick = p.createDiv("|\nLowest Level\nfor interval");
+
+            highLevelTick = p.createDiv("|");
+            lowLevelTick = p.createDiv("|");
+            lowLegend = p.createDiv("Lowest level for interval")
+            highLegend = p.createDiv("Highest level for interval")
 
             highLevelTick.id("highLevelTick");
             lowLevelTick.id("lowLevelTick");
+            lowLegend.id("lowLegend")
+            highLegend.id("highLegend")
 
-            highTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content;"
-            lowTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content; transform: translateY(-100%);"
+            highTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content; color: red;"
+            lowTickTextStyle = "display: block; font-size: .75rem; font-weight: bold; text-align: center; white-space: pre; width: fit-content; transform: translateY(-100%); color: green;"
             
             highLevelTick.style(highTickTextStyle)
             lowLevelTick.style(lowTickTextStyle)
+            lowLegend.style("font-size: .75rem; color: green; transform: translateY(-75%)")
+            highLegend.style("font-size: .75rem; color: red; transform: translateY(-75%)")
 
-            highLevelTick.position(upperBound + startingPosition - (p.textWidth(highLevelTick) / 2), 0, 'relative')
-            // startingPosition - (p.textWidth(lowLevelTick) / 2)
-            lowLevelTick.position(startingPosition - (p.textWidth(lowLevelTick) / 2), 0, 'relative')
+            if (window.innerWidth >= 1000) {
+                highLevelTick.position(upperBound + startingPosition, 0, 'relative')
+                lowLevelTick.position(startingPosition, 0, 'relative')
+            } else {
+                highLevelTick.position(upperBound + startingPosition, 0, 'relative')
+                lowLevelTick.position(startingPosition, 0, 'relative')
+            }
             
+            console.log(startingPosition)
+
         } else {
             p.noLoop()
         }
@@ -241,15 +257,17 @@ let sketch = function (p) {
         sketch.wave = p.rect(0, 0, startingPosition + x, p.height - 30)
 
         //foam
-        for (var i = 0; i < p.height; i += 75) {
+        if (active == true) {
+            for (var i = 0; i < p.height; i += 75) {
 
-            p.fill(255);
+                p.fill(255);
 
-            p.noStroke();
+                p.noStroke();
 
-            // shaking arc p.random(rangeSize - 0.002, rangeSize + 0.002)
-            p.arc(startingPosition + x, i, 10 + x, 150, p.PI / 2, 3 * p.PI / 2);
+                // shaking arc p.random(rangeSize - 0.002, rangeSize + 0.002)
+                p.arc(startingPosition + x, i, 10 + x, 150, p.PI / 2, 3 * p.PI / 2);
 
+            }
         }
 
         p.stroke(0);
@@ -259,7 +277,6 @@ let sketch = function (p) {
         // change text to divs and add position and color
 
         if (x > upperBound) { 
-            console.log(`UPPER:\nX - ${x}\nSP - ${startingPosition}\nUB - ${upperBound}`)
             changeDirection = true
          }
 
@@ -267,7 +284,6 @@ let sketch = function (p) {
         //effects of direction change happen below
 
         else if (x <= 0) { 
-            console.log(`LOWER:\nX - ${x}\nSP - ${startingPosition}\nUB - ${upperBound}`)
             changeDirection = false 
         }
         //if the circle passes the left side (or becomes equal to 0)
