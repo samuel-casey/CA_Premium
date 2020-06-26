@@ -164,8 +164,6 @@ let sketch = function (p) {
         canv = p.createCanvas(window.innerWidth / 1.25, window.innerHeight * 0.83);
 
         if (active == true) {
-            
-            console.log(`Winner: ${window.innerWidth}`)
 
             p.loop()
 
@@ -338,7 +336,7 @@ function addStationEl(station) {
         stationOutput.append(stationNameEl)
     }
 
-    const timeEl = `<div id="localClock" ><span id="stationOutput">${station["station_name"]}</span><br>Local time: ${station['current_time'].slice(11, 16)}</div>`
+    const timeEl = `<div id="localClock" ><span id="stationOutput">${station["station_name"]}</span><br><b>Local time:</b> ${station['current_time'].slice(11, 16)}</div>`
     if (currentTime.children().length == 0) {
         currentTime.append(timeEl);
     } else {
@@ -373,7 +371,7 @@ function addTideEls(tideData) {
     const timeTilFormatted = msToHoursMins(timeTil);
 
     // element with timeTilHours
-    const timeTilEl = `<div id="timeTil">Approx. time until next tide: ${timeTilFormatted}</div>`
+    const timeTilEl = `<div id="timeTil"><b>~ time until next tide:</b> ${timeTilFormatted}</div>`
 
     if ($("#timeTil")) {
         $("#localClock").remove($("#timeTil"))
@@ -437,8 +435,6 @@ function handleSubmit() {
     const spinner = `<div class="spinner-border text-primary justify-content-center" id="spin1" role="status">
         <span class="sr-only">Loading...</span>
     </div>`
-    
-    stationOutput.append(spinner);
     
     nextTide.append(spinner);
     
