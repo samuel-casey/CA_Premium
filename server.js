@@ -8,11 +8,13 @@ const db = require('./queries')
 const engines = require('consolidate')
 const ejs = require('ejs')
 const timeCalc = require('./times')
+const sslRedirect = require('heroku-ssl-redirect')
 
 // app.engine('ejs', engines.ejs)
 // app.set('views', __dirname + '/views')
 // app.set('view engine', 'ejs')
 
+app.use(sslRedirect());
 app.use(express.static(__dirname + '/public'))
 app.use(morgan('dev'))
 app.use(bodyParser.json())
