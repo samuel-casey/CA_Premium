@@ -537,11 +537,7 @@ function getLastAndNext(station) {
                 }
             }
 
-
-            //moment.js library
-
             const firstPos = function (obj) { return obj.distance > 0 };
-
 
             const lastIdx = predictions.findIndex(firstPos) - 1
             const nextIdx = predictions.findIndex(firstPos)
