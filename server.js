@@ -5,16 +5,13 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const app = express()
 const db = require('./queries')
-const engines = require('consolidate')
-const ejs = require('ejs')
 const timeCalc = require('./times')
 const sslRedirect = require('heroku-ssl-redirect')
 
-// app.engine('ejs', engines.ejs)
-// app.set('views', __dirname + '/views')
-// app.set('view engine', 'ejs')
+if (process.env.NODE_ENV === 'production') {
+  app.use(sslRedirect());
+}
 
-app.use(sslRedirect());
 app.use(express.static(__dirname + '/public'))
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -1107,4 +1104,4 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
-app.listen(port, () => console.log(`tides-vis app running on port:${port}`));
+app.listen(port, () => console.log(`tides-vis app running on port:${port}\nNODE_ENV=${process.env.NODE_ENV}`));

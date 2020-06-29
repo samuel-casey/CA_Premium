@@ -166,7 +166,7 @@ a:visited {
     grid-column: 1 / span 4;
     line-height: 0.25em;
     font-weight: bold;
-    color: gold;
+    color: white;
     -webkit-text-stroke: 0.1px navy;
 }
 
