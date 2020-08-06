@@ -520,7 +520,7 @@ function getLastAndNext(station) {
     const yesterdayFormatted = yesterdaysDate.replace(/-/g, "")
     const tomorrowFormatted = tomorrowsDate.replace(/-/g, "")
 
-    stationApiUrl = `https://tidesandcurrents.noaa.gov/api/datagetter?product=predictions&begin_date=${yesterdayFormatted}&end_date=${tomorrowFormatted}&datum=MLLW&station=${station.station_id}&time_zone=lst_ldt&units=english&interval=hilo&format=json`
+    stationApiUrl = `https://cors-anywhere.herokuapp.com/https://tidesandcurrents.noaa.gov/api/datagetter?product=predictions&begin_date=${yesterdayFormatted}&end_date=${tomorrowFormatted}&datum=MLLW&station=${station.station_id}&time_zone=lst_ldt&units=english&interval=hilo&format=json`
 
     return $.get(stationApiUrl)
         .then((data, textStatus, jqXHR) => {
