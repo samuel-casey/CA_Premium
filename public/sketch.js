@@ -336,7 +336,7 @@ function addStationEl(station) {
         stationOutput.append(stationNameEl)
     }
 
-    const timeEl = `<div id="localClock" ><div id="apiWarning" style="color: red !important">WARNING: THIS SITE IS CURRENTLY ONLY SHOWING THE CLOSEST NOAA TIDES PREDICTIONS STATION TO THE LOCATION YOU INPUT ABOVE. THE ACTUAL TIDE PREDICTIONS FEATURE IS DOWN DUE TO AN ISSUE WITH THE NOAA API. PLEASE VISIT <a href="https://tidesandcurrents.noaa.gov/tide_predictions.html" target="#">https://tidesandcurrents.noaa.gov/tide_predictions.html</a> AND TYPE IN THE STATION NAME THAT RESULTS FROM PRESSING SUBMIT IN ORDER TO SEE TIDE PREDICTIONS IN THE MEANTIME.</div>
+    const timeEl = `<div id="localClock" >
     <span id="stationOutput">${station["station_name"]}</span><br><b>Local time:</b> ${station['current_time'].slice(11, 16)}</div>`
     if (currentTime.children().length == 0) {
         currentTime.append(timeEl);
