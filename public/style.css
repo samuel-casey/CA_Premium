@@ -39,6 +39,8 @@ a:visited {
     justify-self: center;
     position: relative;
     margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 #nextTide, #lastTide {
@@ -191,6 +193,11 @@ a:visited {
     margin: 0 3px 0 3px;
 }
 
+#apiWarning {
+    text-align: center;
+    grid-column: 2;
+    grid-row: 2;
+}
 
 @media screen and (max-width: 1000px) {
     body {
