@@ -1,29 +1,33 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+	<head>
+		<title>Tides Animation</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap"
+			rel="stylesheet"
+		/>
+		<link href="style.css" rel="stylesheet" />
+	</head>
+	<body class="infoBody">
+		<h1>What is this site?</h1>
+		<p class="infoP">
+			This site helps ocean lovers visualize the real-time water-level, previous
+			tide, and next tide of their favorite beach in the United States.
+		</p>
 
-<head>
-    <title>Tides Animation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&display=swap" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
-</head>
-<body class="infoBody">
-    <h1>What is this site?</h1>
-    <p class="infoP">
-        This site helps ocean lovers visualize the real-time water-level, previous tide, and next tide of their favorite beach in the United States. the water-level of the previous tide, and the water-level of the next tide. 
-    </p>
-    
-    <h2>Technical Details</h2>
-    <p> 
-        The tide predictions for this site are sourced from the National Oceanographic and Atmospheric Association's CO-OPS API and utilized in a p5js animation.
-        
-        The CO-OPS API does not have real-time water-level data for every station that it has tide predictions for, so the inital water-level that loads after the user submits their location is a back-end calculation.
+		<h2>Technical Details</h2>
+		<p>
+			The tide predictions for this site are sourced from the National
+			Oceanographic and Atmospheric Association's CO-OPS API and utilized in a
+			p5js animation. The CO-OPS API does not have real-time water-level data
+			for every station that it has tide predictions for, so the inital
+			water-level that loads after the user submits their location is a back-end
+			calculation. The back-end is comprised of a Postgresql database and an
+			Express server hosted by Heroku.
+		</p>
 
-        The back-end is comprised of a Postgresql database and an Express server hosted by Heroku.
-    </p>
-    
-    <p>Developer: <a href="https://samcasey.life">Sam Casey</a></p>
+		<p>Developer: <a href="https://samcasey.life">Sam Casey</a></p>
 
-    <a href="./main.html">Homepage</a>
-</body>
-
+		<a href="./main.html">Homepage</a>
+	</body>
 </html>
