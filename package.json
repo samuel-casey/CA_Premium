@@ -15,7 +15,7 @@
     },
     "homepage": "https://github.com/samuel-casey/CA_Premium#readme",
     "dependencies": {
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "consolidate": "^0.15.1",
         "csv-parse": "^4.8.6",
         "csv-writer": "^1.6.0",
